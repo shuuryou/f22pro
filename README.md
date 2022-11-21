@@ -76,7 +76,7 @@ The process takes a long time, so you might want [download and run a stay awake 
 
 *If you follow these steps, you are doing so at your own risk. I wrote down the steps as I was doing them.*
 
-The original Chinese + English stock ROM is apparently a little bit better. It doesn't include Google Play. But there's always the FDroid store and many alternative stores. I got the ROM from a website called [ROM-Provider](https://romprovider.com/xiaomi-qin-f22-pro-firmware-support/). If you download the `ROM_2_1.0.7_Unloked.7z` file, and open it, inside will be a file named just `ROM_2`. You can open this file with 7-Zip and extract `42.super.img` from it.
+The original Chinese + English stock ROM is apparently a little bit better. It doesn't include Google Play. But there's always F-Droid and many alternative stores. I got the ROM from a website called [ROM-Provider](https://romprovider.com/xiaomi-qin-f22-pro-firmware-support/). If you download the `ROM_2_1.0.7_Unloked.7z` file, and open it, inside will be a file named just `ROM_2`. You can open this file with 7-Zip and extract `42.super.img` from it.
 
 1. Run `python mtk w 42.super.img` (adjust the path to backup directory as necessary).
 1. You should get the message `Waiting for PreLoader VCOM, please connect mobile`. Now press and hold *VOLUME DOWN* on the phone, then plug in the USB C cable. Do not press any other buttons.
