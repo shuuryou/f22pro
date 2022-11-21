@@ -138,8 +138,12 @@ Let's continue with debloating the China ROM.
 
 Use [Universal Android Debloater](https://github.com/0x192/universal-android-debloater) for this.
 
-**DO NOT DISABLE OR UNINSTALL `com.duoqin.qweather` OR THE STOCK LAUNCHER WILL STOP WORKING!**
+#### Do Not Remove
+* `com.duoqin.qweather` (the stock launcher will stop working; the app itself is garbage and only supports some Chinese cities)
+* `com.duoqin.shortcuts` (setting "Quick Key Settings > Keys simulate touch-screen..." breaks)
 
+
+#### Probably Safe to Remove
 Here's my debloat list:
 
 ```
@@ -150,6 +154,7 @@ com.android.calllogbackup
 com.android.contacts
 com.android.deskclock
 com.android.dialer
+com.android.documentsui
 com.android.dreams.basic
 com.android.egg
 com.android.gallery3d
@@ -175,7 +180,6 @@ com.duoqin.pinyin
 com.duoqin.post
 com.duoqin.remote
 com.duoqin.remoteservice
-com.duoqin.shortcuts
 com.duoqin.syncassistant
 com.duoqin.translator
 com.marsqin.chat
@@ -186,7 +190,12 @@ com.sprd.sprdcalculator
 com.wapi.wapicertmanager
 ```
 
-This leaves you with Camera, Files, Settings, the Latin IME (on screen keyboard), and an app with Chinese text that you can long tap and uninstall normally via the Android UI.
+This leaves you with:
+* Camera
+* Settings
+* Weather
+* Latin IME (default English on-screen keyboard)
+* An app with Chinese text that you can long tap and uninstall normally via the Android UI
 
 In the stock launcher, you'll still see the search bar, a Wechat box, and an Aipay box if you swipe all the way to the left. They are all broken and don't do anything though. If you tap on them, the launcher will pop up a message saying the app they need to function is missing.
 
