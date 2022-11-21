@@ -187,7 +187,7 @@ com.wapi.wapicertmanager
 
 This leaves you with Camera, Files, Settings, the Latin IME (on screen keyboard), and an app with Chinese text that you can long tap and uninstall normally via the Android UI.
 
-In the stock launcher, you'll still see the search bar, a Wechat box, and an Aipay box if you swipe all the way to the left. They are all broken and don't do anything though. If you tape on them, they complain the app they need to function is missing.
+In the stock launcher, you'll still see the search bar, a Wechat box, and an Aipay box if you swipe all the way to the left. They are all broken and don't do anything though. If you tap on them, the launcher will pop up a message saying the app they need to function is missing.
 
 ### Next Steps
 
