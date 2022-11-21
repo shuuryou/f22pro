@@ -27,7 +27,12 @@ You cannot buy accessories for this phone outside of China. None of the popular 
 
 ## Software
 
-I bought the version that has Google Play preinstalled.
+There seem to be three versions of this phone:
+1. Original from the factory: Chinese + English, without Google Play
+2. Original from the factory, hacked: Chinese + English, OEM unlocked, Google Play and hacked to think the phone is certified by Google
+3. International ROM with Google Play: Supports many languages, is OEM unlocked, has Google Play, is not certified by Google
+
+I received the third flavor; the version that has Google Play preinstalled and supports languages other than Chinese and English.
 
 * It runs Android 12 with a security patch level of May 2022. The built-in updater doesn't find any updates. 
 * The bootloader was unlocked
@@ -42,7 +47,7 @@ The last point was a deal breaker for me.
 
 The entire ROM feels like a quick hack that some third party quickly put together without testing it much. I commend the developer(s) for creating a clean ROM, but it once again confirmed my theory that Chinese developers see software as a means to an end, rather than taking pride in it. With Chinese hardware, the golden rule usually is to never update the firmware, because in 9.5 out of 10 cases, doing so will permanently brick your device. 
 
-So obviously the best thing to do in this case is to change the firmware.
+So obviously the best thing to do in this case is to change the firmware to the first flavor. :weary:
 
 ### Backup the Google Play ROM
 
