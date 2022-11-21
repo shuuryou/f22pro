@@ -67,7 +67,7 @@ The process takes a long time, so you might want [download and run a stay awake 
 1. Make sure your phone is unplugged, then shut it down.
 1. Open a command prompt and `cd` into the folder you extracted MTKClient into.
 1. Run `pip3 install -r requirements.txt`
-1. Run `python mtk" rl D:\bk\` (adjust the path to backup directory as necessary).
+1. Run `python mtk rl D:\bk\` (adjust the path to backup directory as necessary).
 1. You should get the message `Waiting for PreLoader VCOM, please connect mobile`. Now press and hold *VOLUME DOWN* on the phone, then plug in the USB C cable. Do not press any other buttons.
 1. MTKClient will now run an exploit to give it control over the phone and then begins dumping the ROM, making one file for each part of it. The backup process will take anywhere from 6 – 8 hours, because it also includes the huge userdata partition for good measure. Just let it run over night.
 1. Unplug the phone
@@ -93,8 +93,8 @@ While the phone appears to work better at first glance, you'll quickly find that
 #### Fix Wireless LAN and Bluetooth
 
 1. Extract all the other images from the `ROM_2` file. Then delete these to preserve your NVRAM (IMEI, WiFi MAC, etc.): `nvcfg`, `nvdata`, `nvram`, `protect1`, `protect2`.
-1. Run `python mtk wl "<path to the folder you extracted the images to>"` -- this will take roughly 30 minutes
-1. Wait for the process to complete, then unplug the phone.
+1. Run `python mtk wl "D:\chinarom"` -- replace the path as necessary.
+1. Wait for the process to complete (roughly 30 minutes), then unplug the phone.
 1. Run `python mtk e metadata,userdata,md_udc` to reset the phone to factory defaults
 1. You should get the message `Waiting for PreLoader VCOM, please connect mobile`. Now press and hold *VOLUME DOWN* on the phone, then plug in the USB C cable. Do not press any other buttons. If you screw this up, you'll likely get two boot loops before Android tells you it can't boot; it then offers you to wipe userdata via the phone itself and you can skip the next two steps.
 1. Wait for the process to complete, then unplug the phone.
@@ -128,7 +128,7 @@ I guess the preloader was replaced with a hacked version by the seller. OTA upda
 
 Use this command to create a backup of the preloader:
 
-`python mtk r preloader "<path to backup dir>\preloader.bin" --parttype=boot1`
+`python mtk r preloader "D:\bk\preloader.bin" --parttype=boot1`
 
 You never know if you might need it in the future.
 
