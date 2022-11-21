@@ -138,10 +138,11 @@ Let's continue with debloating the China ROM.
 
 Use [Universal Android Debloater](https://github.com/0x192/universal-android-debloater) for this.
 
+**DO NOT DISABLE OR UNINSTALL `com.duoqin.qweather` OR THE STOCK LAUNCHER WILL STOP WORKING!**
+
 Here's my debloat list:
 
 ```
-com.duoqin.qweather
 com.android.bluetoothmidiservice
 com.android.browser
 com.android.calendar
