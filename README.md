@@ -208,7 +208,7 @@ In the stock launcher, you'll still see the search bar, a Wechat box, and an Aip
 
 #### WiFi Calling Cannot be Turned On
 
-WiFi Calling can't be enabled in Firmware 1.0.7 due to a bug. The settings app crashes if you try, because the developers screwed up:
+WiFi Calling can't be enabled in firmware release 1.0.7 due to a bug. The settings app crashes if you try, because the developers screwed up:
 
 ```
 11-22 18:35:46.811  4625  4625 D AndroidRuntime: Shutting down VM
