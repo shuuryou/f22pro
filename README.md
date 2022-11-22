@@ -204,8 +204,53 @@ This leaves you with:
 
 In the stock launcher, you'll still see the search bar, a Wechat box, and an Aipay box if you swipe all the way to the left. They are all broken and don't do anything though. If you tap on them, the launcher will pop up a message saying the app they need to function is missing.
 
+### Chinese Stock ROM Bugs
+
+#### WiFi Calling Cannot be Turned On
+
+WiFi Calling can't be enabled in Firmware 1.0.7 due to a bug. The settings app crashes if you try, because the developers screwed up:
+
+```
+11-22 18:35:46.811  4625  4625 D AndroidRuntime: Shutting down VM
+11-22 18:35:46.812  4625  4625 E AndroidRuntime: FATAL EXCEPTION: main
+11-22 18:35:46.812  4625  4625 E AndroidRuntime: Process: com.android.settings, PID: 4625
+11-22 18:35:46.812  4625  4625 E AndroidRuntime: java.lang.RuntimeException: Unable to start activity ComponentInfo{com.android.settings/com.android.settings.Settings$WifiCallingSettingsActivity}: java.lang.IllegalStateException: This Activity already has an action bar supplied by the window decor. Do not request Window.FEATURE_ACTION_BAR and set android:windowActionBar to false in your theme to use a Toolbar instead.
+11-22 18:35:46.812  4625  4625 E AndroidRuntime:        at android.app.ActivityThread.performLaunchActivity(ActivityThread.java:3675)
+11-22 18:35:46.812  4625  4625 E AndroidRuntime:        at android.app.ActivityThread.handleLaunchActivity(ActivityThread.java:3832)
+11-22 18:35:46.812  4625  4625 E AndroidRuntime:        at android.app.servertransaction.LaunchActivityItem.execute(LaunchActivityItem.java:103)
+```
+Launching it via shell also fails:
+
+`am start -a android.intent.action.MAIN -n com.android.settings/.Settings\$WifiCallingSettingsActivity`
+
+The settings app flashes up for a second and disappears. The error is the same as above. This can't be fixed without rooting the phone and patching the Settings APK. Maybe a newer firmware fixes it. I can't test that since the phone won't install OTA updates right now as described above.
+
+#### Lock Screen Insecure
+
+The lock screen only supports 
+* No security
+* Pattern unlock
+* PIN unlock
+
+Password locking is completely unavailable and the PIN unlock is limited to four digits. Four digit PINs can be guessed easily based on fingerprints you leave either on the touch screen or on the keypad, and it is strongly recommended to use at least six digit PINs.
+
+I assume that restricting the PIN to four digits is to help law enforcement in China make sure that people follow the rules set by the General Secretary of the Communist Party.
+
+![a](https://user-images.githubusercontent.com/36278767/203406312-27ef91f7-9168-4fa7-9bf6-f9027ce7279a.png)
+
 ### Next Steps
 
-At this stage, consider installing [F-Droid](https://f-droid.org/), which you can do with ADB or via Bluetooth if you already have it on another phone. You can replace all the now gone stock apps with the ones from [Simple Mobile Tools](https://www.simplemobiletools.com/) via F-Droid. You even get the features limited to donators for free, if you install the "Simple Thank You" app. Consider making a donation to them if you enjoy their bloat-free and privacy-friendly replacements for stock apps.
+At this stage, and if you can live with the bugs, consider installing [F-Droid](https://f-droid.org/), which you can do with ADB or via Bluetooth if you already have it on another phone. You can replace all the now gone stock apps with the ones from [Simple Mobile Tools](https://www.simplemobiletools.com/) via F-Droid. You even get the features limited to donators for free, if you install the "Simple Thank You" app. Consider making a donation to them if you enjoy their bloat-free and privacy-friendly replacements for stock apps.
 
-To be continued...
+### Back to the ROM the Phone Shipped With
+
+I want to like this phone, but it's difficult choosing between a sloppy, unfinished international ROM with bugs and the stock ROM with other bugs.
+
+Anyway, going back to the previous ROM is also done using the MTKClient tool. If you still have your ROM backup, that is.
+
+1. Make sure your phone is unplugged, then shut it down.
+1. Open a command prompt and `cd` into the folder you extracted MTKClient into.
+1. Run `pip3 install -r requirements.txt`
+1. Run `python mtk wl D:\bk\` (adjust the path to backup directory as necessary).
+1. You should get the message `Waiting for PreLoader VCOM, please connect mobile`. Now press and hold *VOLUME DOWN* on the phone, then plug in the USB C cable. Do not press any other buttons.
+1. Wait a bit and you should be back on the old ROM.
