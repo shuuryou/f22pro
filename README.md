@@ -41,9 +41,7 @@ I received the third flavor; the version that has Google Play preinstalled and s
 * The phone is not Google Play certified, so your banking or 2FA apps probably won't work with it.
 * The keypad backlight doesn't work with this ROM.
 * The keypad in general doesn't behave right with this ROM. To become useful, buttons need to be remapped using a third-party app.
-* The phone can't be unlocked with just the keypad; you need to swipe the screen before being able to input the passcode.
-
-The last point was a deal breaker for me.
+* ~~The phone can't be unlocked with just the keypad; you need to swipe the screen before being able to input the passcode.~~ Press the top left button (the one with the strange symbol that looks like a badly drawn heart or cat ears with pierced lip) to trigger PIN entry, then use the number keys as expected.
 
 The entire ROM feels like a quick hack that some third party quickly put together without testing it much. I commend the developer(s) for creating a clean ROM, but it once again confirmed my theory that Chinese developers see software as a means to an end, rather than taking pride in it. With Chinese hardware, the golden rule usually is to never update the firmware, because in 9.5 out of 10 cases, doing so will permanently brick your device. 
 
