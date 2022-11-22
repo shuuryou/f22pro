@@ -250,7 +250,6 @@ Anyway, going back to the previous ROM is also done using the MTKClient tool. If
 
 1. Make sure your phone is unplugged, then shut it down.
 1. Open a command prompt and `cd` into the folder you extracted MTKClient into.
-1. Run `pip3 install -r requirements.txt`
 1. Run `python mtk wl D:\bk\` (adjust the path to backup directory as necessary).
 1. You should get the message `Waiting for PreLoader VCOM, please connect mobile`. Now press and hold *VOLUME DOWN* on the phone, then plug in the USB C cable. Do not press any other buttons.
 1. Wait a bit and you should be back on the old ROM.
