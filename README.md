@@ -252,6 +252,63 @@ Anyway, going back to the previous ROM is also done using the MTKClient tool. If
 1. You should get the message `Waiting for PreLoader VCOM, please connect mobile`. Now press and hold *VOLUME DOWN* on the phone, then plug in the USB C cable. Do not press any other buttons.
 1. Wait a bit and you should be back on the old ROM.
 
+#### Google ROM Debloat
+
+Again, use [Universal Android Debloater](https://github.com/0x192/universal-android-debloater) for this.
+
+Here's my list:
+```
+### Disable ###
+
+# Need to enable temporarily when setting up Android Auto
+com.google.android.apps.googleassistant 
+
+# Will crash Settings app if uninstalled
+com.google.android.apps.wellbeing
+
+### Uninstall ###
+
+# Warning: do not do this if you have no other keyboards installed
+com.google.android.inputmethod.latin
+
+com.android.bluetoothmidiservice
+com.android.calllogbackup
+com.android.chrome
+com.android.deskclock
+com.android.dreams.basic
+com.android.egg
+com.android.nfc
+com.android.providers.partnerbookmarks
+com.android.sharedstoragebackup
+com.android.simappdialog
+com.android.stk
+com.android.traceur
+com.duokan.phone.remotecontroller
+com.google.android.apps.messaging
+com.google.android.apps.nbu.files
+com.google.android.apps.photos
+com.google.android.apps.restore
+com.google.android.as
+com.google.android.calendar
+com.google.android.contacts
+com.google.android.dialer
+com.google.android.ext.shared
+com.google.android.feedback
+com.google.android.gm
+com.google.android.gms.location.history
+com.google.android.googlequicksearchbox
+com.google.android.marvin.talkback
+com.google.android.onetimeinitializer
+com.google.android.partnersetup
+com.google.android.printservice.recommendation
+com.google.android.syncadapters.contacts
+com.google.android.tag
+com.google.android.tts
+com.mediatek.mdmconfig
+```
+
+This should leave nothing except Camera, Play Store, and Settings. All the essential apps like the dialer, SMS, etc. can be replaced with better alternatives from Simple Mobile Tools (see "Next Steps" above).
+
 ## Japanese Input (Bonus: Romaji T9 Input)
 
 For certain reasons, I need a Japanese IME on this phone. Unfortunately there are no easily available solutions for Japanese input on a phone like this. It's possible to use the touch screen, but using the hardware keys for 10 key kana input (テンキー入力) would be a lot nicer.
