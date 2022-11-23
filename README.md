@@ -302,15 +302,15 @@ You need these tools to proceed:
 1. In the command prompt, `cd` into `FSKAREN_3.2.2FT01005`
 1. Run `apktool b` to rebuild the APK file. It should return no errors.
 1. Run `keytool -genkey -v -keystore key.jks -keyalg RSA -keysize 2048 -validity 10000 -alias fskaren` and answer all the prompts (keytool is in the JDK program folder)
-1. Run `zipalign -v 4 FSKAREN_3.2.2FT01005\dist\FSKAREN_3.2.2FT01005.apk fskaren.apk`
 1. Run `jarsigner -keystore key.jks fskaren.apk fskaren` (jarsigner is in the JDK program folder)
+1. Run `zipalign -v 4 FSKAREN_3.2.2FT01005\dist\FSKAREN_3.2.2FT01005.apk fskaren.apk`
 
 Now you can sideload `fskaren.apk` using onto the Duoqin F22 Pro using `adb install` or whatever method you prefer. The phone will complain that it was built for an old version of Android, but if you confirm all of those nag screens, it will work perfectly. Even kanji candidate selection using the center navigation button works without problems.
 
 
 #### What about LatinIME?
 
-I personally use [Traditional T9](https://codeberg.org/HenriDellal/TraditionalT9) ([compiled APK](https://web.archive.org/web/20200919201626/https://github.com/HenriDellal/TraditionalT9/releases/download/20190315/t9.apk)), but if you want to try Freetel's hacked LatinIME with T9 support, it can be patched as well. It includes these dictionaries:
+I use [Traditional T9](https://codeberg.org/HenriDellal/TraditionalT9) ([compiled APK](https://web.archive.org/web/20200919201626/https://github.com/HenriDellal/TraditionalT9/releases/download/20190315/t9.apk)), but if you want to try Freetel's hacked LatinIME with T9 support, it can be patched as well. It includes these dictionaries:
 
 * t9_pl.dict
 * t9_pt_br.dict
@@ -339,6 +339,12 @@ I personally use [Traditional T9](https://codeberg.org/HenriDellal/TraditionalT9
 * t9_nb.dict
 * t9_nl.dict
 
-If you got `LatinIME.apk` from the firmware, the patch process is very similar. :smiley:
+If you got `LatinIME.apk` from the Freetel Musashi firmware, the patch process is almost exactly the same. :smiley:
 
-The file you need to edit is called: `LatinIME\smali\com\android\inputmethod\latin\LatinIME.smali`. On line 3652, change `if-nez v0, :cond_0` to `# if-nez v0, :cond_0` to bypass a jump instruction and force T9 mode to be always on. Then recompile as described above. You will get a few warning messages, but the APK will work.
+The file you need to edit is called: `LatinIME\smali\com\android\inputmethod\latin\LatinIME.smali`. On line 3652, change `if-nez v0, :cond_0` to `goto :cond_0` to turn the conditional jump into an unconditional jump, which forces T9 mode to be always on. Then recompile as described above. You will get a few warning messages, but the APK will work.
+
+Note that T9 will only work in some input fields. It doesn't work in the search box of the Settings app, but it does work on the search box of F-Droid, for example. Active T9 will be indicated at the bottom: Instead of "English - abc" it will say "English - **S**abc".
+
+#### Ready to Use APKs
+
+I have uploaded the two APKs that I patched using the above process to this repository. If you don't trust me, please recreate them yourself.
