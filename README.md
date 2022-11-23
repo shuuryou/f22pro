@@ -238,7 +238,7 @@ I assume that restricting the PIN to four digits is to help law enforcement in C
 
 ### Next Steps
 
-At this stage, and if you can live with the bugs, consider installing [F-Droid](https://f-droid.org/), which you can do with ADB or via Bluetooth if you already have it on another phone. You can replace all the now gone stock apps with the ones from [Simple Mobile Tools](https://www.simplemobiletools.com/) via F-Droid. You even get the features limited to donators for free, if you install the "Simple Thank You" app. Consider making a donation to them if you enjoy their bloat-free and privacy-friendly replacements for stock apps.
+At this stage, and if you can live with the bugs and limitations, consider installing [F-Droid](https://f-droid.org/), which you can do with ADB or via Bluetooth if you already have it on another phone. You can replace all the now gone stock apps with the ones from [Simple Mobile Tools](https://www.simplemobiletools.com/) via F-Droid. You even get the features limited to donators for free, if you install the "Simple Thank You" app. Consider making a donation to them if you enjoy their bloat-free and privacy-friendly replacements for stock apps.
 
 ### Back to the ROM the Phone Shipped With
 
@@ -251,3 +251,94 @@ Anyway, going back to the previous ROM is also done using the MTKClient tool. If
 1. Run `python mtk wl D:\bk\` (adjust the path to backup directory as necessary).
 1. You should get the message `Waiting for PreLoader VCOM, please connect mobile`. Now press and hold *VOLUME DOWN* on the phone, then plug in the USB C cable. Do not press any other buttons.
 1. Wait a bit and you should be back on the old ROM.
+
+## Japanese Input (Bonus: Romaji T9 Input)
+
+For certain reasons, I need a Japanese IME on this phone. Unfortunately there are no easily available solutions for Japanese input on a phone like this. It's possible to use the touch screen, but using the hardware keys for 10 key kana input (テンキー入力) would be a lot nicer.
+
+In Japan, a company called Freetel released a strange flip phone called Musashi FTJ161A in 2016. That phone was really bad. It was very expensive, but it had poor build quality, poor hardware specs, poor and outdated software on launch, and the camera was absolutely terrible. It didn't even have a headphone jack. And yes, I owned one. :disappointed:
+
+The only novelty was that it contained two touch screens, so you could operate it opened or closed.
+
+Originally, Freetel provided a quickly thrown together version of the Open Wnn IME for Japanese, but after enough complaints from Japanese customers, Freetel released a firmware update that included a special version of a Japanese IME called FSKAREN by FUJISOFT. FSKAREN is not very good when compared to modern Google Japanese IME with cloud suggestions, but it's better than nothing.
+
+A ROM dump containing the special version of FSKAREN is still available online, so let's see what can be done.
+
+### Get the Freetel Musashi ROM
+
+You need a Linux system available for the following steps.
+
+1. Download the ROM: [FTJ161A ROM](https://www.romgsm.net/2020/03/freetel-musashi-ftj161a-mt6735-firmware.html). The password is "Musashi FTJ161A"
+1. Extract the ZIP file to a convenient location. 
+1. The `system.bin` file is a normal ext4 partition. You can mount it on Linux: `mkdir /tmp/freetel && mount system.img /tmp/freetel`.
+1. Take the APK file from `/tmp/freetel/app/FSKAREN_3.22FT01005/FSKAREN_3.2.2FT01005.apk`
+1. (Optional) Also take the APK file from `/tmp/freetel/app/LatinIME/LatinIME.apk` if you want; it seems to be a patched version of the AOSP romaji keyboard that supports T9. Inside the APK are T9 dictionaries for many languages.
+
+### Patch the APK
+
+The problem is that FSKAREN checks `mtek_watchdog_flip_status` to set a value called `mFlipOpened` depending on whether the phone was opened or closed.  This doesn't exist on the Duoqin F22 Pro, so by default FSKAREN will always think the phone is closed and will display a normal touchscreen keyboard. The APK needs to be patched so that two checks for the value of mFlipOpened are bypassed. FSKAREN will then think the phone is always flipped open and only operate in ten key kana input (テンキー入力) mode.
+
+Luckily the developer who implemented the changes for the Freetel Musashi made them open source under the Apache License, Version 2.0. Well, sort of, and probably by mistake. Inside the APK you will find the file `jp\co\fsi\fskaren\pom\FSIME.java.bak` which contains the full source code of the `FSIME` class. Search for `MUSASHI用開閉フラグ` in that file and you will immediately get an idea about what needs to be done next. :smiley:
+
+You need these tools to proceed:
+* [Oracle JDK](https://www.oracle.com/java/technologies/downloads/)
+* [apktool](https://bitbucket.org/iBotPeaches/apktool/downloads/)
+* [smali and baksmali](https://bitbucket.org/JesusFreke/smali/downloads/)
+* `zipalign.exe` from the Android SDK
+
+#### Decompile the APK
+
+1. Open a command prompt
+1. Decompile `FSKAREN_3.2.2FT01005.apk` using the command `apktool d FSKAREN_3.2.2FT01005.apk`. Then you get a new folder called `FSKAREN_3.2.2FT01005`.
+1. Open `FSKAREN_3.2.2FT01005\smali\jp\co\fsi\fskaren\pom\FSIME.smali` with a text editor
+1. Search for `mtek_watchdog_flip_status`, you should find it on line 23,864.
+1. On line 23,872 change `if-lez v7, :cond_4` to `# if-lez v7, :cond_4`
+1. Search again for `mtek_watchdog_flip_status`, you should find it on line 29,325.
+1. On line 29,333 change `if-lez v3, :cond_3` to `# if-lez v3, :cond_3`
+1. Close your editor; you've just patched out the jump instructions that trigger activating to the touchscreen keyboard
+
+#### Recompile the APK
+
+1. In the command prompt, `cd` into `FSKAREN_3.2.2FT01005`
+1. Run `apktool b` to rebuild the APK file. It should return no errors.
+1. Run `keytool -genkey -v -keystore key.jks -keyalg RSA -keysize 2048 -validity 10000 -alias fskaren` and answer all the prompts (keytool is in the JDK program folder)
+1. Run `zipalign -v 4 FSKAREN_3.2.2FT01005\dist\FSKAREN_3.2.2FT01005.apk fskaren.apk`
+1. Run `jarsigner -keystore key.jks fskaren.apk fskaren` (jarsigner is in the JDK program folder)
+
+Now you can sideload `fskaren.apk` using onto the Duoqin F22 Pro using `adb install` or whatever method you prefer. The phone will complain that it was built for an old version of Android, but if you confirm all of those nag screens, it will work perfectly. Even kanji candidate selection using the center navigation button works without problems.
+
+
+#### What about LatinIME?
+
+I personally use [Traditional T9](https://codeberg.org/HenriDellal/TraditionalT9) ([compiled APK](https://web.archive.org/web/20200919201626/https://github.com/HenriDellal/TraditionalT9/releases/download/20190315/t9.apk)), but if you want to try Freetel's hacked LatinIME with T9 support, it can be patched as well. It includes these dictionaries:
+
+* t9_pl.dict
+* t9_pt_br.dict
+* t9_pt_pt.dict
+* t9_ro.dict
+* t9_ru.dict
+* t9_sl.dict
+* t9_sr.dict
+* t9_sv.dict
+* t9_tr.dict
+* t9_cs.dict
+* t9_da.dict
+* t9_de.dict
+* t9_el.dict
+* t9_en.dict
+* t9_en_gb.dict
+* t9_en_us.dict
+* t9_es.dict
+* t9_fi.dict
+* t9_fr.dict
+* t9_hr.dict
+* t9_it.dict
+* t9_iw.dict
+* t9_lt.dict
+* t9_lv.dict
+* t9_nb.dict
+* t9_nl.dict
+
+If you got `LatinIME.apk` from the firmware, the patch process is very similar. :smiley:
+
+The file you need to edit is called: `LatinIME\smali\com\android\inputmethod\latin\LatinIME.smali`. On line 3652, change `if-nez v0, :cond_0` to `# if-nez v0, :cond_0` to bypass a jump instruction and force T9 mode to be always on. Then recompile as described above. You will get a few warning messages, but the APK will work.
