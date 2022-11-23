@@ -17,7 +17,7 @@ The following was in the box when I got it:
 
 ## Accessories
 
-You cannot buy accessories for this phone outside of China. None of the popular places will sell you any because nobody is offering anything. AliExpress has some stuff on offer, but I decided to commission a custom 151mm x 61mm x 11mm felt sleeve for the phone from a local workshop that quoted a very reasonable price. This should fit the phone when its inside the plastic case.
+You cannot buy accessories for this phone outside of China. None of the popular places will sell you any because nobody is offering anything. AliExpress has some stuff on offer, but I decided to commission a custom 151mm x 61mm x 11mm felt sleeve for the phone from a local workshop that quoted a very reasonable price. Unfortunately it turned out too tight to fit the phone when its in the plastic case, but it fits the phone perfectly without it. 151mm x 65mm x 20mm might be better for a sleeve that can fit the plastic case. Since the case is anti-slip the sleeve should not be a tight fit.
 
 ## Key Combinations
 
