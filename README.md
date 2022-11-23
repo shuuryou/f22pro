@@ -34,7 +34,7 @@ There seem to be three versions of this phone:
 
 I received the third flavor; the version that has Google Play preinstalled and supports languages other than Chinese and English.
 
-* It runs Android 12 with a security patch level of May 2022. The built-in updater doesn't find any updates. 
+* It runs Android 12 with a security patch level of ~~May~~ June 2022. The built-in updater doesn't find any updates. 
 * The bootloader was unlocked
 * It comes preloaded with the whole suite of Google's garbage. A cursory look showed that the apps seem to work. All Google apps can be disabled using [Universal Android Debloater](https://github.com/0x192/universal-android-debloater).
 * Disabling all of the junk apps that are safe to disable leaves you with an almost pristine version of Android.
