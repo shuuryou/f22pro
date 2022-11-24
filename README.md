@@ -4,6 +4,8 @@ The Duoqin F22 Pro (aka. Qin F22 Pro) is an Android smartphone with a traditiona
 
 ![Duoqin F22 Pro](https://user-images.githubusercontent.com/36278767/203085989-1d1c3ab0-9bbc-43f3-90e5-73fee4c82904.jpg)
 
+As of November 2022, I use this as my primary phone. Excessive smartphone use is harmful, bad for mental health, and associated with physical health problems. This Duoqin F22 Pro, while offering a complete Android experience, is annoying enough that you end up not wanting to use it very much, yet it can do maps, browsing, email, messaging, and whatever else, if it's really urgent. Perfect!
+
 ## Delivery
 
 The following was in the box when I got it:
