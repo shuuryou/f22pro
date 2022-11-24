@@ -235,7 +235,7 @@ Password locking is completely unavailable and the PIN unlock is limited to four
 
 I assume that restricting the PIN to four digits is to help law enforcement in China make sure that people follow the rules set by the General Secretary of the Communist Party.
 
-![a](https://user-images.githubusercontent.com/36278767/203406312-27ef91f7-9168-4fa7-9bf6-f9027ce7279a.png)
+![Pleasing to back click away for not government review](https://user-images.githubusercontent.com/36278767/203406312-27ef91f7-9168-4fa7-9bf6-f9027ce7279a.png)
 
 ### Next Steps
 
@@ -409,6 +409,34 @@ The file you need to edit is called: `LatinIME\smali\com\android\inputmethod\lat
 
 Note that T9 will only work in some input fields. It doesn't work in the search box of the Settings app, but it does work on the search box of F-Droid, for example. Active T9 will be indicated at the bottom: Instead of "English - abc" it will say "English - **S**abc".
 
-#### Ready to Use APKs
+### Ready to Use APKs
 
 I have uploaded the two APKs that I patched using the above process to this repository. If you don't trust me, please recreate them yourself.
+
+## Remapping Buttons Without Root
+
+There is no dedicated backspace key, which is highly annoying when typing using T9 or 10key kana. I therefore remapped the back button to also act as a backspace key. I also remapped the center (round) button to act as an Enter key. This is how I did it:
+
+1. Install [Shizuku](https://shizuku.rikka.app/)
+1. Install [Key Mapper](https://f-droid.org/de/packages/io.github.sds100.keymapper/)
+1. Go through the step by step setup of both apps so that they stop complaining and start working; the process is documented well in each app
+1. In Key Mapper, tap the big **+** button, then tap the red **Record Trigger** button, and press the round center button on the phone
+1. Next, in **Actions**, tap **Add action**, then tap **Input key code**
+1. Select *66 KEYCODE_ENTER*
+1. Tap the little floppy disk icon at the bottom right to save
+1. Tap the big **+** button again, then record a trigger for the physical back button (the top right button with the u-turn arrow)
+1. Ignore the warning that pops up, then, in **Actions**, tap **Add action**, and then tap **Input key code**
+1. Select *67 KEYCODE_DEL*
+1. Save the mapping like before
+1. Tap the big **+** button yet again, then record another trigger for the physical back button
+1. This time, don't add a key code trigger, but scroll down in the list of triggers and select **Go back**
+1. Save the mapping like before
+1. Edit the last mapping you just added by tapping on its entry, then select **Long press** at the bottom and save
+
+It should look like this:
+
+![Mapped buttons](https://user-images.githubusercontent.com/36278767/203872279-5ff326b5-30a0-46df-a174-da5de4499da5.png)
+
+Now you can confirm search and URL boxes, insert new lines, etc. by pressing the round center button on the phone. If you short press the back button, it will delete the last character you entered. If you long press it, it will act like it did before and go back or exit out of an app.
+
+The downside of this approach is that Shizuku has to be started again on every reboot and requires debugging permissions to be always enabled (somewhat dangerous). The alternative is using an invisible virtual keyboard provided by the Key Mapper app, but this is extremely awkward and doesn't work right. The other alternative is rooting the phone. I don't wnat to since it will break some 2FA and banking apps that I need in case of emergency, unless I start playing cat and mouse games with Magisk. To summarize: everything sucks.
