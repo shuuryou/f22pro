@@ -41,7 +41,8 @@ I received the third flavor; the version that has Google Play preinstalled and s
 * The phone is not Google Play certified, so your banking or 2FA apps probably won't work with it.
 * The keypad backlight doesn't work with this ROM.
 * The keypad in general doesn't behave right with this ROM. To become useful, buttons need to be remapped using a third-party app.
-* ~~The phone can't be unlocked with just the keypad; you need to swipe the screen before being able to input the passcode.~~ Press the top left button (the one with the strange symbol that looks like a badly drawn heart or cat ears with pierced lip) to trigger PIN entry, then use the number keys as expected.
+* ~~The phone can't be unlocked with just the keypad~~ Press the top left button (the one with the strange symbol that looks like a badly drawn heart or cat ears with pierced lip) to trigger PIN entry, then use the number keys as expected.
+* Turning off the screen with the power button and immediately turning it back on has a 50% chance of a black flickering screen appearing. Workaround is to turn the screen back off, wait one second, and then turn it on.
 
 The entire ROM feels like a quick hack that some third party quickly put together without testing it much. I commend the developer(s) for creating a clean ROM, but it once again confirmed my theory that Chinese developers see software as a means to an end, rather than taking pride in it. With Chinese hardware, the golden rule usually is to never update the firmware, because in 9.5 out of 10 cases, doing so will permanently brick your device. 
 
@@ -268,8 +269,17 @@ com.google.android.apps.wellbeing
 
 ### Uninstall ###
 
-# Warning: do not do this if you have no other keyboards installed
+# Warning: Do not do this if you have no other keyboards installed!
+# If you use password lock, you won't be able to unlock your phone after reboot!
+# If you use PIN or pattern lock, they work fine even if this is uninstalled.
 com.google.android.inputmethod.latin
+
+# Warning: Uninstall breaks Settings > Storage > Free up space 
+# "No Activity found to handle Intent { act=android.os.storage.action.MANAGE_STORAGE }"
+com.google.android.apps.nbu.files
+
+# Warning: Breaks search box in app drawer of the default launcher (QuickStep)
+com.google.android.googlequicksearchbox
 
 com.android.bluetoothmidiservice
 com.android.calllogbackup
@@ -285,7 +295,6 @@ com.android.stk
 com.android.traceur
 com.duokan.phone.remotecontroller
 com.google.android.apps.messaging
-com.google.android.apps.nbu.files
 com.google.android.apps.photos
 com.google.android.apps.restore
 com.google.android.as
@@ -296,7 +305,6 @@ com.google.android.ext.shared
 com.google.android.feedback
 com.google.android.gm
 com.google.android.gms.location.history
-com.google.android.googlequicksearchbox
 com.google.android.marvin.talkback
 com.google.android.onetimeinitializer
 com.google.android.partnersetup
@@ -363,7 +371,6 @@ You need these tools to proceed:
 1. Run `zipalign -v 4 FSKAREN_3.2.2FT01005\dist\FSKAREN_3.2.2FT01005.apk fskaren.apk`
 
 Now you can sideload `fskaren.apk` using onto the Duoqin F22 Pro using `adb install` or whatever method you prefer. The phone will complain that it was built for an old version of Android, but if you confirm all of those nag screens, it will work perfectly. Even kanji candidate selection using the center navigation button works without problems.
-
 
 #### What about LatinIME?
 
