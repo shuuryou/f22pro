@@ -45,6 +45,7 @@ I received the third flavor; the version that has Google Play preinstalled and s
 * The keypad in general doesn't behave right with this ROM. To become useful, buttons need to be remapped using a third-party app.
 * ~~The phone can't be unlocked with just the keypad~~ Press the top left button (the one with the strange symbol that looks like a badly drawn heart or cat ears with pierced lip) to trigger PIN entry, then use the number keys as expected.
 * Turning off the screen with the power button and immediately turning it back on has a 50% chance of a black flickering screen appearing. Workaround is to turn the screen back off, wait one second, and then turn it on.
+* The end call/power button doesn't end the call. **Fix: Settings > Accessibility > System controls > Power button ends call**
 
 The entire ROM feels like a quick hack that some third party quickly put together without testing it much. I commend the developer(s) for creating a clean ROM, but it once again confirmed my theory that Chinese developers see software as a means to an end, rather than taking pride in it. With Chinese hardware, the golden rule usually is to never update the firmware, because in 9.5 out of 10 cases, doing so will permanently brick your device. 
 
