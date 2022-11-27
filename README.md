@@ -288,7 +288,7 @@ com.google.android.googlequicksearchbox
 # background execution settings for alarms in alternative apps to work reliably.
 com.android.deskclock
 
-# Probabls safe to remove
+# Probably safe to remove
 com.android.bluetoothmidiservice
 com.android.calllogbackup
 com.android.chrome
