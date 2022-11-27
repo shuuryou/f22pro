@@ -284,10 +284,14 @@ com.google.android.apps.nbu.files
 # Warning: Breaks search box in app drawer of the default launcher (QuickStep)
 com.google.android.googlequicksearchbox
 
+# Warning: Consider keeping, because you have to change various notification and
+# background execution settings for alarms in alternative apps to work reliably.
+com.android.deskclock
+
+# Probabls safe to remove
 com.android.bluetoothmidiservice
 com.android.calllogbackup
 com.android.chrome
-com.android.deskclock
 com.android.dreams.basic
 com.android.egg
 com.android.nfc
