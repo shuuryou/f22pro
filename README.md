@@ -227,6 +227,14 @@ Launching it via shell also fails:
 
 The settings app flashes up for a second and disappears. The error is the same as above. This can't be fixed without rooting the phone and patching the Settings APK. Maybe a newer firmware fixes it. I can't test that since the phone won't install OTA updates right now as described above.
 
+##### Workaround
+
+Launch it like this via shell:
+
+`am start -a android.intent.action.MAIN -n com.android.settings/com.android.settings.wifi.calling.WifiCallingSuggestionActivity`
+
+This will open up another WiFi Calling settings screen that lets you toggle the option on or off and also set if you want WiFi Calling to be the default whenever possible.
+
 #### Lock Screen Insecure
 
 The lock screen only supports 
